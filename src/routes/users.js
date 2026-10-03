@@ -1,0 +1,12 @@
+import express from "express";
+import { getUser, userContributions, userPullRequests, userReviews, userComments, userCommits, userRepositories, userActivity } from "../controllers/rawDataController.js";
+const router = express.Router();
+router.get("/:githubId", getUser);
+router.get("/:githubId/contributions", userContributions);
+router.get("/:githubId/pull-requests", userPullRequests);
+router.get("/:githubId/reviews", userReviews);
+router.get("/:githubId/comments", userComments);
+router.get("/:githubId/commits", userCommits);
+router.get("/:githubId/repositories", userRepositories);
+router.get("/:githubId/activity", userActivity);
+export default router;

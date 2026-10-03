@@ -1,0 +1,21 @@
+import express from "express";
+import { listCommits, listReviews, listReviewComments, listIssueComments, listIssues, listContributions, getById } from "../controllers/rawDataController.js";
+import Commit from "../models/Commit.js";
+import Review from "../models/Review.js";
+import ReviewComment from "../models/ReviewComment.js";
+import IssueComment from "../models/IssueComment.js";
+import Issue from "../models/Issue.js";
+
+const router = express.Router();
+router.get("/commits", listCommits);
+router.get("/commits/:id", (req, res) => getById(req, res, Commit, "sha"));
+router.get("/reviews", listReviews);
+router.get("/reviews/:id", (req, res) => getById(req, res, Review, "githubReviewId"));
+router.get("/review-comments", listReviewComments);
+router.get("/review-comments/:id", (req, res) => getById(req, res, ReviewComment, "githubCommentId"));
+router.get("/issue-comments", listIssueComments);
+router.get("/issue-comments/:id", (req, res) => getById(req, res, IssueComment, "githubCommentId"));
+router.get("/issues", listIssues);
+router.get("/issues/:id", (req, res) => getById(req, res, Issue, "githubIssueId"));
+router.get("/contributions", listContributions);
+export default router;
